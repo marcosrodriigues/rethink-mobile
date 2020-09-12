@@ -5,6 +5,7 @@ import { colorWhite } from '../../assets/variables';
 import { useAuth } from '../../contexts/auth';
 import { View, Text } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
+import { convertNumberToCurrency } from '../../utils/convertNumberToCurrency';
 
 const AuthHeader: React.FC = () => {
     const { user, signOut } = useAuth();
@@ -24,7 +25,7 @@ const AuthHeader: React.FC = () => {
         <Style.DivInfo>
                 <Style.Title>Bem vindo, {user?.name}</Style.Title>
                 <Style.DivInline>
-                    <Style.TextInfo>Saldo disponível: <Style.Price>R$ 1.500,00</Style.Price></Style.TextInfo>
+                    <Style.TextInfo>Saldo disponível: <Style.Price>{convertNumberToCurrency(1500)}</Style.Price></Style.TextInfo>
 
                     <Style.TextInfo onPress={signOut}>Sair</Style.TextInfo>
                 </Style.DivInline>

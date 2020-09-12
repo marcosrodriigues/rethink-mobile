@@ -6,7 +6,6 @@ import { ScrollViewProperties, ViewStyle, StyleProp } from 'react-native';
 interface ScrollContainerProps extends ScrollViewProperties {
 
 }
-
 const ScrollContainer: React.FC<ScrollContainerProps> = ({ children }) => {
 
     const contentContainerStyle: StyleProp<ViewStyle> = {

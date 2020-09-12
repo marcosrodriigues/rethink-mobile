@@ -5,7 +5,7 @@ import { InvestmentType } from '../../interface/InvestmentType';
 import CardInvestment from '../../components/CardInvestment';
 import { CardInvestmentContainer } from './styles';
 
-const Investir: React.FC = () => {
+const Investment: React.FC = () => {
     const [investment, setInvestment] = useState<InvestmentType[]>([
         { id: 1, title: 'Tesouro Direto' },
         { id: 2, title: 'CBD e LC' },
@@ -16,7 +16,7 @@ const Investir: React.FC = () => {
         { id: 7, title: 'Mini de Dólar' },
         { id: 8, title: 'Previdência Privada' },
         { id: 9, title: 'Debêntures' },
-        { id: 10, title: 'fundos de Índices' },
+        { id: 10, title: 'Fundos de Índices' },
         { id: 11, title: 'Investimento X' },
         { id: 12, title: 'Investimento X' },
         { id: 13, title: 'Investimento X' },
@@ -36,4 +36,4 @@ const Investir: React.FC = () => {
   )
 }
 
-export default Investir;
+export default Investment;

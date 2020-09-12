@@ -4,8 +4,8 @@ import ScrollContainer from '../../components/ScrollContainer';
 
 // import { Container } from './styles';
 
-const Assistente: React.FC = () => {
+const Assistamt: React.FC = () => {
   return <ScrollContainer><Text>Assistente</Text></ScrollContainer>
 }
 
-export default Assistente;
+export default Assistamt;
