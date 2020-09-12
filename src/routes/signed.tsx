@@ -2,7 +2,7 @@ import React from 'react';
 
 import { createStackNavigator } from "@react-navigation/stack";
 import { Text } from 'react-native';
-import { colorPrimary, headerHeight } from '../assets/variables';
+import AuthHeader from '../components/AuthHeader';
 
 const AuthStack = createStackNavigator();
 const SignedRoutes = () => {
@@ -10,10 +10,7 @@ const SignedRoutes = () => {
         <AuthStack.Navigator
             initialRouteName="Dashboard"
             screenOptions={{
-                headerStyle: {
-                    backgroundColor: colorPrimary,
-                    height: headerHeight
-                }
+                header: () => <AuthHeader />
             }}
         >
             <AuthStack.Screen name="Dashboard" component={() => <Text>Dashboard</Text>} />

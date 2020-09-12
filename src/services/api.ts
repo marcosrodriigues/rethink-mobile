@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseURL = process.env.EXPO_BASE_URL_API || '';
+const baseURL = process.env.REACT_NATIVE_APP_BASE_API_URL || '';
 
 const api = axios.create({
     baseURL

@@ -3,9 +3,14 @@ import * as auth from '../services/auth/auth';
 import api from '../services/safra';
 import { AsyncStorage } from 'react-native';
 
+interface User {
+    id: string
+    name: string
+}
+
 interface AuthContextData {
     signed: boolean;
-    user: object | null;
+    user: User | null;
     signIn(email: string, password: string): Promise<void>;
     signOut(): Promise<void>;
     signInWithSafra(user: object): Promise<void>;
@@ -13,7 +18,7 @@ interface AuthContextData {
 const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 
 export const AuthProvider : React.FC = ({ children }) => {
-    const [user, setUser] = useState<object | null>(null);
+    const [user, setUser] = useState<User | null>(null);
 
     useEffect(() => {
         (async function () {
