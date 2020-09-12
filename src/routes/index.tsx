@@ -1,16 +1,16 @@
 import React from 'react';
 
 import { createStackNavigator } from '@react-navigation/stack';
-import Login from '../views/Login';
-import Forgot from '../views/Forgot';
+import { useAuth } from '../contexts/auth';
+import SignedRoutes from './signed';
+import UnsignedRoutes from './unsigned';
 
 const Stack = createStackNavigator();
-
 const Routes = () => {
+    const { signed } = useAuth();
     return (
         <Stack.Navigator>
-            <Stack.Screen options={{ headerShown: false }} name="Login" component={Login} />
-            <Stack.Screen name="Forgot" component={Forgot} />
+            { signed ? <SignedRoutes /> : <UnsignedRoutes /> }
         </Stack.Navigator>
     )
 }
