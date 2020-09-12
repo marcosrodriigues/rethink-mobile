@@ -54,7 +54,7 @@ export const MenuOption = styled.View`
     border-bottom-color: ${colorGold};
     border-bottom-width: 1px;
     padding: 0px 8px;
-    width: 90%;
+    width: 95%;
     justify-content: space-between;
     height: 40px;
     align-items: center;

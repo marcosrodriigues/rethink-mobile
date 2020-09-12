@@ -34,3 +34,9 @@ export const TextInButton = styled.Text<{ color?: string}>`
     font-weight: bold;
     color: ${p => p.color || colorWhite}; 
 `
+
+export const TitleInfoScrollContainer = styled.Text<{ color?: string}>`
+    font-size: 16px;
+    color: ${p => p.color || colorPrimary}; 
+    padding: 8px 0px;
+`
