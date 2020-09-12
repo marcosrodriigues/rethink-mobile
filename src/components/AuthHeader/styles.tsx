@@ -14,7 +14,7 @@ export const Container = styled.View`
     flex-direction: row;
 `;
 
-export const ButtonHamburguer = styled.TouchableOpacity`
+export const ButtonHamburger = styled.TouchableOpacity`
     opacity: 1;
     height: 75px;
     justify-content: flex-end;
