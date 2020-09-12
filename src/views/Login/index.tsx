@@ -21,7 +21,6 @@ const Login: React.FC = () => {
     const handleEnterButton = async () => {
         try {
             await signIn(email, password);
-            navigation.navigate('Dashboard');
         } catch (err) {
             Alert.alert("Hey", "Verifique suas credenciais.")
         }
@@ -30,7 +29,6 @@ const Login: React.FC = () => {
     const handleContinueWithSafra = async () => {
         try {
             await signInWithSafra({ email, password });
-            navigation.navigate('Dashboard');
         } catch (err) {
             Alert.alert("Hey", "Tente novamente.")
         }
