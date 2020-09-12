@@ -3,13 +3,14 @@ import React from 'react';
 import { Container } from './styles';
 import { ScrollViewProperties, ViewStyle, StyleProp } from 'react-native';
 
-interface ScrollContainerProps extends ScrollViewProperties {
+interface ChatContainerProps extends ScrollViewProperties {
 }
-const ScrollContainer: React.FC<ScrollContainerProps> = ({ children }) => {
+const ChatContainer: React.FC<ChatContainerProps> = ({ children }) => {
 
     const contentContainerStyle: StyleProp<ViewStyle> = {
         flexDirection: "column",
-        alignItems: "flex-start",
+        justifyContent: "flex-end",
+        alignItems: "center",
     }
 
     return <Container contentContainerStyle={contentContainerStyle}>
@@ -17,4 +18,4 @@ const ScrollContainer: React.FC<ScrollContainerProps> = ({ children }) => {
         </Container>;
 }
 
-export default ScrollContainer;
+export default ChatContainer;

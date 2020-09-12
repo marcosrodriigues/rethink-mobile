@@ -10,6 +10,12 @@ import { convertNumberToCurrency } from '../../utils/convertNumberToCurrency';
 const AuthHeader: React.FC = () => {
     const { user, signOut } = useAuth();
 
+    const menuItems = [
+        { text: "Objetivos", route: "Dashboard"},
+        { text: "Investir", route: "Investment"},
+        { text: "Assistente", route: "Assistant"},
+    ]
+
     const navigation = useNavigation();
     const route = useRoute();
 
@@ -32,9 +38,17 @@ const AuthHeader: React.FC = () => {
             </Style.DivInfo>
         </Style.Container>
         <Style.MenuOption>
-            <Style.MenuItem active={route.name === "Dashboard"} activeOpacity={1} onPress={() => handleClickMenu('Dashboard')}><Style.Text>Objetivos</Style.Text></Style.MenuItem>
-            <Style.MenuItem active={route.name === "Investment"} activeOpacity={1} onPress={() => handleClickMenu('Investir')}><Style.Text>Investir</Style.Text></Style.MenuItem>
-            <Style.MenuItem active={route.name === "Assistant"} activeOpacity={1} onPress={() => handleClickMenu('Assistente')}><Style.Text>Assistente</Style.Text></Style.MenuItem>
+            {menuItems.map(item => (
+                <Style.MenuItem 
+                    key={item.route}
+                    active={route.name === item.route} 
+                    activeOpacity={1} 
+                    onPress={() => handleClickMenu(item.route)}
+                >
+                    <Style.Text>{item.text}</Style.Text>
+                </Style.MenuItem>
+            ))}
+            
         </Style.MenuOption>
     </View>
 }
