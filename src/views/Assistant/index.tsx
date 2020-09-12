@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { AssistantContainer, InputContainer } from './style';
+import { AssistantContainer, InputContainer, MessageContainer } from './style';
 import ChatContainer from '../../components/ChatContainer';
 import Message from '../../interface/Message';
 import BallonMessage from '../../components/BallonMessage';
@@ -8,66 +8,65 @@ import RTButtonSquare from '../../components/ButtonSquare';
 import { Feather } from '@expo/vector-icons';
 import { colorWhite } from '../../assets/variables';
 import { botApi } from '../../services/bot';
-import { Alert } from 'react-native';
+import { Alert, View } from 'react-native';
+import { createWebSocket, onMessage } from '../../services/socket';
 
 const Assistant: React.FC = () => {
-    const [messages, setMessages] = useState<Message[]>([
-        { id: 1, isFromMe: true, text: "Oi Safira, como vai?" },
-        { id: 2, isFromMe: false, text: "Boa tarde, ##NOME##! Estou ótima, e como vai você?" },
-        { id: 3, isFromMe: true, text: "Estou bem." },
-        { id: 4, isFromMe: true, text: "E qual a previsão do dia de hoje?" },
-        { id: 5, isFromMe: false, text: "Hoje vai fazer muito sol!" },
-        { id: 6, isFromMe: true, text: "Oi Safira, como vai?" },
-        { id: 7, isFromMe: false, text: "Boa tarde, ##NOME##! Estou ótima, e como vai você?" },
-        { id: 8, isFromMe: true, text: "Estou bem." },
-        { id: 9, isFromMe: true, text: "E qual a previsão do dia de hoje?" },
-        { id: 10, isFromMe: false, text: "Hoje vai fazer muito sol!" },
-        { id: 11, isFromMe: true, text: "Oi Safira, como vai?" },
-        { id: 12, isFromMe: false, text: "Boa tarde, ##NOME##! Estou ótima, e como vai você?" },
-        { id: 13, isFromMe: true, text: "Estou bem." },
-        { id: 14, isFromMe: true, text: "E qual a previsão do dia de hoje?" },
-        { id: 15, isFromMe: false, text: "Hoje vai fazer muito sol!" },
-    ]);
+    const [messages, setMessages] = useState<Message[]>([]);
     const [message, setMessage] = useState("");
 
     const [conversationId, setConversationId] = useState("");
 
     const [webSocketUrl, setWebSocketUrl] = useState("");
+    const [socket, setSocket] = useState<WebSocket>();
 
-    const handleSendMessageToBot = () => {
-        if (message !== "") return;
-        setMessages([
-            ...messages,
-            { id: 16, isFromMe: true, text: message }
-        ]);
+    const handleSendMessageToBot = async () => {
+        if (message === "") return;
+        
+        botApi.post(`/${conversationId}/activities`, {
+            locale: "pt-BR",
+            type: "message",
+            from: {
+                id: "Rethink App"
+            },
+            text: message
+        });
         setMessage("");
+
+        if (socket)
+            onMessage(socket, msg => setMessages(m => [...m, ...msg]));
     }
 
     useEffect(() => {
         (async function () {
-            try {
-                const { data } = await botApi.post('', {});
-                setConversationId(data.conversationId);
-                setWebSocketUrl(data.streamUrl)
-                botApi.defaults.headers.Authorization = `Bearer ${data.token}`;
-            } catch (error) {
-                Alert.alert("Hey", "Não foi possível conectar com o serviço de atendimento.")
-            }
+            if (!conversationId && !webSocketUrl)
+                try {
+                    const { data } = await botApi.post('', {});
+                    setConversationId(data.conversationId);
+                    setWebSocketUrl(data.streamUrl)
+                    botApi.defaults.headers.Authorization = `Bearer ${data.token}`;
+                } catch (error) {
+                    Alert.alert("Hey", "Não foi possível conectar com o serviço de atendimento.")
+                }
         })()
     }, [])
 
     useEffect(() => {
-        if (webSocketUrl !== "") {
+        if (webSocketUrl !== "" && !socket) {
+            const ws = createWebSocket(webSocketUrl);
+            setSocket(ws);
         }
-    }, [webSocketUrl])
+    }, [webSocketUrl]);
 
     return (
         <AssistantContainer>
-            <ChatContainer>
-                {messages && messages.map(msg => (
-                    <BallonMessage key={msg.id} message={msg} />
-                ))}    
-            </ChatContainer>    
+            <MessageContainer>
+                <ChatContainer>
+                    {messages && messages.map(msg => (
+                        <BallonMessage key={msg.id + msg.text} message={msg} />
+                    ))}    
+                </ChatContainer>    
+            </MessageContainer>
             <InputContainer>
                 <RTInput width="80%" value={message} onChangeText={setMessage} />
                 <RTButtonSquare onPress={handleSendMessageToBot} disabled={!conversationId}>

@@ -6,6 +6,7 @@ const Authorization = process.env.REACT_NATIVE_APP_BOT_DEFAULT_TOKEN || '';
 export const botApi = axios.create({
     baseURL,
     headers: {
-        Authorization: `Bearer ${Authorization}`
+        Authorization: `Bearer ${Authorization}`,
+        ContentType: 'application/json'
     }
 })
