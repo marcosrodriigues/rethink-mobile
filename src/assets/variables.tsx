@@ -6,3 +6,4 @@ export const colorGreen             = "#A5E18D";
 export const backgroundMeBallon     = "#8492A6";
 export const backgroundBotBallon    = "#E5E9F2";
 export const textBotBallon          = "#505B67";
+export const headerHeight           = 200;

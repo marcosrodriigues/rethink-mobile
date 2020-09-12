@@ -1,7 +1,6 @@
 import axios from 'axios';
-import { SAFRA_API_URL } from "react-native-dotenv";
 
-const baseURL = SAFRA_API_URL || '';
+const baseURL = process.env.EXPO_SAFRA_API_URL || '';
 
 const api = axios.create({
     baseURL

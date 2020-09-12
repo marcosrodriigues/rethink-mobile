@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Alert } from 'react-native';
 
 import { Container, Logo, LogoContainer, ButtonContainer, Link } from './style';
@@ -9,17 +9,31 @@ import RTInput from '../../components/Input';
 import RTButton from '../../components/Button';
 import { colorWhite, backgroundMeBallon } from '../../assets/variables';
 import { useNavigation } from '@react-navigation/native';
+import { useAuth } from '../../contexts/auth';
 
 const Login: React.FC = () => {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const { signIn, signInWithSafra } = useAuth();
 
     const navigation = useNavigation();
 
-    const handleEnterButton = () => {
-        Alert.alert("Hey", "Acessando com formulário")
+    const handleEnterButton = async () => {
+        try {
+            await signIn(email, password);
+            navigation.navigate('Dashboard');
+        } catch (err) {
+            Alert.alert("Hey", "Verifique suas credenciais.")
+        }
     }
 
-    const handleContinueWithSafra = () => {
-        Alert.alert("Hey", "Acessando API do Safra")
+    const handleContinueWithSafra = async () => {
+        try {
+            await signInWithSafra({ email, password });
+            navigation.navigate('Dashboard');
+        } catch (err) {
+            Alert.alert("Hey", "Tente novamente.")
+        }
     }
 
     const handleForgotPassword = () => {
@@ -32,8 +46,8 @@ const Login: React.FC = () => {
                 <Logo source={logo} />
             </LogoContainer>
             <Form>
-                <RTInput placeholder="Digite seu e-mail" />
-                <RTInput placeholder="Digite sua senha" secureTextEntry />
+                <RTInput placeholder="Digite seu e-mail" value={email} onChangeText={setEmail} />
+                <RTInput placeholder="Digite sua senha" value={password} onChangeText={setPassword} secureTextEntry />
 
                 <ButtonContainer>
                     <RTButton onPress={handleEnterButton}><TextInButton>Entrar</TextInButton></RTButton>

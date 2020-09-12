@@ -8,11 +8,7 @@ import UnsignedRoutes from './unsigned';
 const Stack = createStackNavigator();
 const Routes = () => {
     const { signed } = useAuth();
-    return (
-        <Stack.Navigator>
-            { signed ? <SignedRoutes /> : <UnsignedRoutes /> }
-        </Stack.Navigator>
-    )
+    return signed ? <SignedRoutes /> : <UnsignedRoutes />
 }
 
 export default Routes;
