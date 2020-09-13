@@ -1,9 +1,10 @@
 import React from 'react';
 import Investment from '../../interface/Investment';
 
-import { Container, CardInline, CardInvestmentTitle, Subtitle, Value } from './styles';
+import { Container, CardInvestmentTitle, Subtitle, Value } from './styles';
 import { Text } from 'react-native';
 import { convertNumberToCurrency } from '../../utils/convertNumberToCurrency';
+import { Inline } from '../../assets/global';
 
 interface CardInvestmentProps {
     investment: Investment,
@@ -23,10 +24,10 @@ const CardInvestment: React.FC<CardInvestmentProps> = ({
         <Container onPress={onClick} activeOpacity={1}>
             <CardInvestmentTitle>{investment.title}</CardInvestmentTitle>
 
-            <CardInline>
+            <Inline>
                 <Subtitle>Valor mínimo: <Value>{convertNumberToCurrency(investment.minPrice)}</Value></Subtitle>
                 <Subtitle>Vencimento: <Value>{investment.date}</Value></Subtitle>
-            </CardInline>
+            </Inline>
         </Container>
     );
 }

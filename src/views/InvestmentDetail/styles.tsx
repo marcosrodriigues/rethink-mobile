@@ -1,20 +1,18 @@
 import styled from 'styled-components/native';
 import { colorGold, colorPrimary, colorBlack } from '../../assets/variables';
 
-export const Container = styled.TouchableOpacity`
-    width: 100%;
-    border-width: 1px;
-    border-color: ${colorGold};
-    margin: 8px 0;
-    padding: 0 8px;
-    border-radius: 5px;
+export const Container = styled.View`
+  width: 100%;
+  border: 1px;
+  border-color: ${colorGold};
+  padding: 8px;
+  align-items: center;
 `;
 
-export const CardInvestmentTitle = styled.Text`
-    font-size: 18px;
-    font-weight: bold;
+export const InvestmentTitle = styled.Text`
+    font-size: 20px;
     color: ${colorPrimary};
-    margin: 10px 0;
+    font-weight: bold;
 `
 
 export const Subtitle = styled.Text`
@@ -22,8 +20,6 @@ export const Subtitle = styled.Text`
     font-size: 14px;
     font-weight: bold;
     margin: 16px 0;
-    max-width: 60%;
-    width: 45%;
 `
 
 export const Value = styled.Text`
@@ -32,4 +28,3 @@ export const Value = styled.Text`
     font-weight: bold;
     margin: 16px 0;
 `
-

@@ -52,3 +52,9 @@ export const TitleInfoScrollContainer = styled.Text<{ color?: string}>`
     color: ${p => p.color || colorPrimary}; 
     padding: 8px 0px;
 `
+
+export const Inline = styled.View`
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+`
