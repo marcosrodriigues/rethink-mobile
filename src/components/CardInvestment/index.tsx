@@ -2,7 +2,6 @@ import React from 'react';
 import Investment from '../../interface/Investment';
 
 import { Container, CardInvestmentTitle, Subtitle, Value } from './styles';
-import { Text } from 'react-native';
 import { convertNumberToCurrency } from '../../utils/convertNumberToCurrency';
 import { Inline } from '../../assets/global';
 

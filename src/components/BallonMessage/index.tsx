@@ -1,5 +1,4 @@
 import React from 'react';
-import { Text } from 'react-native';
 import Message from '../../interface/Message';
 import { BallonMe, TextMe, TextBot, BallonBot } from './styles';
 

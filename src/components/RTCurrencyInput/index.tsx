@@ -1,5 +1,5 @@
 import React from 'react';
-import { TextInputMask, TextInputMaskProps } from 'react-native-masked-text';
+import { TextInputMask } from 'react-native-masked-text';
 import { colorGold } from '../../assets/variables';
 
 // import { Container } from './styles';

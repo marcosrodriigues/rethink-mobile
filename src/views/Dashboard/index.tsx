@@ -3,7 +3,6 @@ import goals from '../../utils/objectives.json';
 import ScrollContainer from '../../components/ScrollContainer';
 import Objective from '../../interface/Objective';
 import CardObjective from '../../components/CardObjective';
-import { useNavigation } from '@react-navigation/native';
 
 // import { Container } from './styles';
 
