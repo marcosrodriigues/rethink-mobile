@@ -1,27 +1,34 @@
 import React from 'react';
+import Investment from '../../interface/Investment';
 
-import { Container } from './styles';
-import { InvestmentType } from '../../interface/InvestmentType';
-import { TextInButton } from '../../assets/global';
-import { Alert } from 'react-native';
-import { colorPrimary } from '../../assets/variables';
+import { Container, CardInline, CardInvestmentTitle, Subtitle, Value } from './styles';
+import { Text } from 'react-native';
+import { convertNumberToCurrency } from '../../utils/convertNumberToCurrency';
 
 interface CardInvestmentProps {
-    investmentType: InvestmentType
+    investment: Investment,
+    onClickContainer: (investment: Investment) => void
 }
-const CardInvestment: React.FC<CardInvestmentProps> = ({ investmentType }) => {
 
-    const handleClickContainer = () => {
-        Alert.alert('Ops!', "Clicou em " + investmentType.title);
+const CardInvestment: React.FC<CardInvestmentProps> = ({
+    investment,
+    onClickContainer
+}) => {
+
+    const onClick = () => {
+        onClickContainer(investment);
     }
 
     return (
-        <Container onPress={handleClickContainer}>
-            <TextInButton color={colorPrimary}>
-                {investmentType.title}
-            </TextInButton>
+        <Container onPress={onClick} activeOpacity={1}>
+            <CardInvestmentTitle>{investment.title}</CardInvestmentTitle>
+
+            <CardInline>
+                <Subtitle>Valor mínimo: <Value>{convertNumberToCurrency(investment.minPrice)}</Value></Subtitle>
+                <Subtitle>Vencimento: <Value>{investment.date}</Value></Subtitle>
+            </CardInline>
         </Container>
-    )
+    );
 }
 
 export default CardInvestment;

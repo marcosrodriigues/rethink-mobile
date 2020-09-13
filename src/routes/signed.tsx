@@ -6,6 +6,8 @@ import Dashboard from '../views/Dashboard';
 import Investment from '../views/Investment';
 import Assistant from '../views/Assistant';
 import ObjectiveDetail from '../views/ObjectiveDetail';
+import InvestmentTypeDetail from '../views/InvestmentTypeDetail';
+import InvestmentDetail from '../views/InvestmentDetail';
 
 const AuthStack = createStackNavigator();
 const SignedRoutes = () => {
@@ -21,6 +23,8 @@ const SignedRoutes = () => {
             <AuthStack.Screen name="Dashboard" component={Dashboard} />
             <AuthStack.Screen name="ObjectiveDetail" component={ObjectiveDetail} />
             <AuthStack.Screen name="Investment" component={Investment} />
+            <AuthStack.Screen name="InvestmentTypeDetail" component={InvestmentTypeDetail} />
+            <AuthStack.Screen name="InvestmentDetail" component={InvestmentDetail} />
             <AuthStack.Screen name="Assistant" component={Assistant} />
         </AuthStack.Navigator>
     )

@@ -1,4 +1,7 @@
+import Investment from "./Investment";
+
 export interface InvestmentType {
     id: number,
-    title: string
+    title: string,
+    availableInvestments: [Investment]
 }

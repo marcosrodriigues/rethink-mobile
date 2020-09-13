@@ -1,0 +1,35 @@
+[
+    { 
+        "id": 1, 
+        "title": "Tesouro Direto",
+        "availableInvestments": [
+            {
+                "id": 20,
+                "title": "Tesouro Selic 2025",
+                "minPrice": 106.82,
+                "date": "01/03/2025"
+            },
+            {
+                "id": 21,
+                "title": "Tesouro IPCA + 2045",
+                "minPrice": 39.78,
+                "date": "15/05/2045"
+            }
+        ]
+    },
+    { "id": 2, "title": "CBD e LC" },
+    { "id": 3, "title": "LCI e LCA" },
+    { "id": 4, "title": "Fundos Imobiliários" },
+    { "id": 5, "title": "Ações" },
+    { "id": 6, "title": "Opções" },
+    { "id": 7, "title": "Mini de Dólar" },
+    { "id": 8, "title": "Previdência Privada" },
+    { "id": 9, "title": "Debêntures" },
+    { "id": 10, "title": "Fundos de Índices" },
+    { "id": 11, "title": "Investimento X" },
+    { "id": 12, "title": "Investimento X" },
+    { "id": 13, "title": "Investimento X" },
+    { "id": 14, "title": "Investimento X" },
+    { "id": 15, "title": "Investimento X" },
+    { "id": 16, "title": "Investimento X" }
+]

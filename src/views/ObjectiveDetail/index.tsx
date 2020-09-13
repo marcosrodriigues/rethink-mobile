@@ -5,11 +5,8 @@ import RTProgressBar from '../../components/RTProgressBar';
 import CardObjective from '../../components/CardObjective';
 import { convertNumberToCurrency } from '../../utils/convertNumberToCurrency';
 
-interface ParamsProps {
-    objective: Objective,
-}
 
-const ObjectiveDetail: React.FC<ParamsProps> = ({ route }) => {
+const ObjectiveDetail: React.FC = ({ route }) => {
     const objective = route.params.objective as Objective;  
     const { objectives } = objective;
     const progress = (1 - objective.missing / objective.goal);
