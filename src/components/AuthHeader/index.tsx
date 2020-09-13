@@ -15,7 +15,7 @@ const AuthHeader: React.FC = () => {
     const menuItems = [
         { text: "Objetivos", route: "Dashboard"},
         { text: "Investir", route: "Investment"},
-        { text: "Assistente", route: "Assistant"},
+        { text: "Safira", route: "Assistant"},
     ]
 
     const navigation = useNavigation();

@@ -3,5 +3,6 @@ export default interface Objective {
     title: string
     goal: number,
     missing: number,
-    lastHistory: number
+    lastHistory: number,
+    objectives?: [Objective],
 }

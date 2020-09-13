@@ -4,7 +4,7 @@ import { backgroundBotBallon, colorPrimary, colorGold, colorGreen, colorRed } fr
 export const Container = styled.TouchableOpacity`
   width: 100%;
   height: 128px;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   border-radius: 5px;
   border: 1px solid ${backgroundBotBallon};
@@ -40,7 +40,21 @@ export const CardInfoMissingPrice = styled.Text`
     color: ${colorGold};
 `;
 
-export const HistoryInfo = styled.Text<{balance?: boolean}>`
+export const CardInfoComplete = styled.Text`
+    font-size: 16px;
+    font-weight: bold;
+    color: ${colorGreen};
+`
+
+export const ExtraInfo = styled.View`
+    flex-direction: column;
     align-self: flex-end;
+    justify-content: center;
+`
+
+export const ExtraInfoText = styled.Text<{balance?: boolean}>`
+    flex-direction: column;
+    align-self: flex-end;
+    text-align: center;
     color: ${p => p.balance ? colorGreen : colorRed };
 `

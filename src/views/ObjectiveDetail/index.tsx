@@ -1,18 +1,37 @@
 import React from 'react';
-import { View } from 'react-native';
 import Objective from '../../interface/Objective';
-
-
-// import { Container } from './styles';
+import ScrollContainer from '../../components/ScrollContainer';
+import RTProgressBar from '../../components/RTProgressBar';
+import CardObjective from '../../components/CardObjective';
+import { convertNumberToCurrency } from '../../utils/convertNumberToCurrency';
 
 interface ParamsProps {
     objective: Objective,
 }
 
 const ObjectiveDetail: React.FC<ParamsProps> = ({ route }) => {
-    const { params } = route;
-    const { objective } = params;
-  return <View />;
+    const objective = route.params.objective as Objective;  
+    const { objectives } = objective;
+    const progress = (1 - objective.missing / objective.goal);
+
+    const subtitle = `Meta: ${convertNumberToCurrency(objective.goal)}`;
+
+      return (
+        <ScrollContainer title={objective.title} subtitle={subtitle} >
+            <RTProgressBar progress={progress} />
+            {
+                objectives &&
+                    objectives.map(obj => (
+                        <CardObjective 
+                            key={obj.id}
+                            hideChart={true}
+                            objective={obj}
+                            onClickCard={() => {}}
+                        />
+                    ))
+            }
+        </ScrollContainer>
+    )
 }
 
 export default ObjectiveDetail;

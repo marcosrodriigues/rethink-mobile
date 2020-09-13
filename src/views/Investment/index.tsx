@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import ScrollContainer from '../../components/ScrollContainer';
-import { TitleInfoScrollContainer } from '../../assets/global';
 import { InvestmentType } from '../../interface/InvestmentType';
 import CardInvestment from '../../components/CardInvestment';
 import { CardInvestmentContainer } from './styles';
@@ -26,9 +25,7 @@ const Investment: React.FC = () => {
     ]);
 
   return (
-      <ScrollContainer>
-        <TitleInfoScrollContainer>Escolha o tipo de investimento.</TitleInfoScrollContainer>
-
+      <ScrollContainer title="Escolha o tipo de investimento">
         <CardInvestmentContainer>
             {investment && investment.map(i => <CardInvestment key={i.id} investmentType={i} />)}
         </CardInvestmentContainer>

@@ -6,3 +6,9 @@ export const Container = styled.ScrollView`
     align-self: center;
     margin-top: 8px;
 `;
+
+export const HeaderContainer = styled.View`
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+`

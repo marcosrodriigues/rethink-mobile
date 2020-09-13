@@ -1,17 +1,20 @@
 import React from 'react';
 import Objective from '../../interface/Objective';
 
-import { Container, CardInfo, HistoryInfo, CardInfoTitle, CardInfoPrice, CardInfoMissing, CardInfoMissingPrice } from './styles';
+import { Container, CardInfo, CardInfoTitle, CardInfoPrice, CardInfoMissing, CardInfoMissingPrice, CardInfoComplete, ExtraInfoText, ExtraInfo } from './styles';
 
 import { convertNumberToCurrency } from '../../utils/convertNumberToCurrency';
 import RTProgressChart from '../ProgressChart';
 
+import completePng from '../../assets/complete.png'
+import { Image } from 'react-native';
+
 interface CardObjectiveProps {
     objective: Objective,
-    onClickCard: (objective: Objective) => void
+    onClickCard: (objective: Objective) => void,
+    hideChart?: boolean
 }
-const CardObjective: React.FC<CardObjectiveProps> = ({ objective, onClickCard }) => {
-
+const CardObjective: React.FC<CardObjectiveProps> = ({ objective, onClickCard, hideChart = false }) => {
     const percent = ((objective.missing / objective.goal) * 100);
 
     return (
@@ -19,12 +22,25 @@ const CardObjective: React.FC<CardObjectiveProps> = ({ objective, onClickCard })
             <CardInfo>
                 <CardInfoTitle>{objective.title}</CardInfoTitle>
                 <CardInfoPrice>{convertNumberToCurrency(objective.goal)}</CardInfoPrice>
-                <CardInfoMissing>Faltam <CardInfoMissingPrice>{convertNumberToCurrency(objective.missing)}</CardInfoMissingPrice></CardInfoMissing>
+
+                {
+                    objective.missing === 0 ?
+                        <CardInfoComplete>META CONCLUÍDA</CardInfoComplete>
+                    :
+                        <CardInfoMissing>Faltam <CardInfoMissingPrice>{convertNumberToCurrency(objective.missing)}</CardInfoMissingPrice></CardInfoMissing>
+                }
             </CardInfo>
 
-            <RTProgressChart value={percent} />
+            {
+                !hideChart && <RTProgressChart value={percent} />
+            }
+            
 
-            <HistoryInfo balance={objective.lastHistory >= 0}>{convertNumberToCurrency(objective.lastHistory)}</HistoryInfo>
+
+            <ExtraInfo>
+                {objective.missing === 0 && <Image source={completePng} height={75} width={75} />}
+                <ExtraInfoText balance={objective.lastHistory >= 0}>{convertNumberToCurrency(objective.lastHistory)}</ExtraInfoText>
+            </ExtraInfo>
         </Container>
     )
 }

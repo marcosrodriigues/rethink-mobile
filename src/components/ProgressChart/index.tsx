@@ -15,7 +15,7 @@ const RTProgressChart: React.FC<RTProgressChartProps> = ({ value }) => {
         backgroundColor={colorGold} 
         rotation={0}
         tintColor={colorPrimary}
-        fill={value || 100}
+        fill={value ? (100 - value) : 100}
         onAnimationComplete={() => {}}
     >
             {
