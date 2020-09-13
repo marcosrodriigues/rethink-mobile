@@ -30,6 +30,19 @@ const balance = async (accountId: string) : Promise<SafraBalance> => {
     }
 }
 
+const createAccount = async (params = { Name: '', Email: '', Phone: '' }) => {
+    const data = params;
+    try {
+        await apiSafra.post(`/accounts/v1/optin`, data, {
+            headers: {
+                ContentType: "application/json"
+            }
+        });
+    } catch (error) {
+        throw error;
+    }
+}
+
 const transfers = (accountId: string) => {
     return apiSafra.get(`/open-banking/v1/accounts/${accountId}/transfers`);
 }
@@ -38,5 +51,6 @@ export default {
     transactions,
     account,
     balance,
-    transfers
+    transfers,
+    createAccount
 }

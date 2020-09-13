@@ -7,14 +7,15 @@ import { convertNumberToCurrency } from '../../utils/convertNumberToCurrency';
 import RTProgressChart from '../ProgressChart';
 
 interface CardObjectiveProps {
-    objective: Objective
+    objective: Objective,
+    onClickCard: (objective: Objective) => void
 }
-const CardObjective: React.FC<CardObjectiveProps> = ({ objective }) => {
+const CardObjective: React.FC<CardObjectiveProps> = ({ objective, onClickCard }) => {
 
     const percent = ((objective.missing / objective.goal) * 100);
 
     return (
-        <Container>
+        <Container onPress={() => onClickCard(objective)}>
             <CardInfo>
                 <CardInfoTitle>{objective.title}</CardInfoTitle>
                 <CardInfoPrice>{convertNumberToCurrency(objective.goal)}</CardInfoPrice>

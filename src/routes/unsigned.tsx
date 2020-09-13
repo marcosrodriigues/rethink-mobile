@@ -7,7 +7,12 @@ import CreateAccount from '../views/CreateAccount';
 const Stack = createStackNavigator();
 const UnsignedRoutes = () => {
     return (
-        <Stack.Navigator>
+        <Stack.Navigator
+            screenOptions={{
+                animationEnabled: false
+            }}
+            headerMode="none"
+        >
             <Stack.Screen options={{ headerShown: false }} name="Login" component={Login} />
             <Stack.Screen name="CreateAccount" component={CreateAccount} />
         </Stack.Navigator>

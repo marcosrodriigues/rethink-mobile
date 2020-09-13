@@ -7,7 +7,7 @@ import { Form, TextInButton } from '../../assets/global';
 import logo from '../../assets/logo.png';
 import RTInput from '../../components/Input';
 import RTButton from '../../components/Button';
-import { colorWhite, backgroundMeBallon } from '../../assets/variables';
+import { colorWhite, backgroundMeBallon, colorGold } from '../../assets/variables';
 import { useNavigation } from '@react-navigation/native';
 import { useAuth } from '../../contexts/auth';
 
@@ -51,7 +51,7 @@ const Login: React.FC = () => {
 
                 <ButtonContainer>
                     {/* <RTButton onPress={handleEnterButton}><TextInButton>Entrar</TextInButton></RTButton> */}
-                    <RTButton onPress={handleContinueWithSafra}><TextInButton>Continuar com o Safra</TextInButton></RTButton>
+                    <RTButton onPress={handleContinueWithSafra}><TextInButton color={colorGold}>Continuar com o Safra</TextInButton></RTButton>
                 </ButtonContainer>
 
                 {/* <Link onPress={handleForgotPassword}>Esqueci minha senha</Link> */}

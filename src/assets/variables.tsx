@@ -1,7 +1,7 @@
 export const colorPrimary           = "#374281";
+export const colorGold              = "#C4B28A";
 export const colorBlack             = "#535353";
 export const colorWhite             = "#FFFFFF";
-export const colorGold              = "#C4B28A";
 export const colorGreen             = "#A5E18D";
 export const colorRed               = "#FF5B5B";
 export const backgroundMeBallon     = "#8492A6";
