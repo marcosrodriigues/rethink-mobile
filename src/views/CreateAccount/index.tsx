@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, Alert } from 'react-native';
+import { Alert } from 'react-native';
 
 import { Container, LogoContainer, Logo, ButtonContainer, Link } from './styles';
 import RTButton from '../../components/Button';
@@ -10,8 +10,11 @@ import RTInput from '../../components/Input';
 import { colorGold } from '../../assets/variables';
 import { useNavigation } from '@react-navigation/native';
 import safraService from '../../services/safra/safra' 
+import { useAuth } from '../../contexts/auth';
 
 const CreateAccount: React.FC = () => {
+
+    const { signIn } = useAuth();
 
     const [formData, setFormData] = useState({
         Name: '',
@@ -23,8 +26,9 @@ const CreateAccount: React.FC = () => {
 
     const handleOpenAccount = async () => {
         try {
+            await signIn();
             await safraService.createAccount(formData);
-            Alert.alert("Tudo certo!", "É só você fazer login agora");
+            Alert.alert("Quase pronto!", "Você vai receber um e-mail com as informações pra criar sua conta!");
         } catch (error) {
             Alert.alert("Hey", "Verifique seus dados");
         }

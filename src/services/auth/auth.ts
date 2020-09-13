@@ -1,27 +1,15 @@
-import credentials from '../../utils/credentials.json';
+
 import accounts from '../../utils/accounts.json';
 import { apiLoginSafra, apiSafra } from '../safra';
 import safraService from '../safra/safra';
 import { encode } from 'base-64';
 
-export const signIn = (ag: string, cc: string, pass: string) =>  {
-    return {
-        data: {
-            token: 'TokenNormalUser',
-            user :{
-                id: 'generatedKey',
-                name: 'Normal user'
-            }
-        }
-    }
+const credential = {
+    client_id: process.env.REACT_NATIVE_APP_SAFRA_CLIENT_ID || '',
+    secret: process.env.REACT_NATIVE_APP_SAFRA_SECRET       || '',
 }
 
-export const signOut = () =>  {
-    return;
-}
-
-export const signInWithSafra = async () => {
-    const credential = getRandomCredential();
+export const signIn = async () =>  {
     const concatened = `${credential.client_id}:${credential.secret}`;
     const base64 = encode(concatened);
     const formString = "grant_type=client_credentials&scope=urn:opc:resource:consumer::all";
@@ -38,6 +26,18 @@ export const signInWithSafra = async () => {
         const { access_token, token_type } = data;
 
         apiSafra.defaults.headers.Authorization = `${token_type} ${access_token}`;
+    } catch (error) {
+        throw error;
+    }
+
+}
+
+export const signOut = () =>  {
+    return;
+}
+
+export const signInWithSafra = async () => {
+    try {
         const randomAccountId = getRandomAccountId();
 
         const safraUser = await safraService.account(randomAccountId)
@@ -55,12 +55,6 @@ export const signInWithSafra = async () => {
     } catch (error) {
         throw error;
     }
-}
-
-const getRandomCredential = () => {
-    const rand = 100 * Math.random();
-    const index = rand % credentials.length
-    return credentials[Math.floor(index)];
 }
 
 const getRandomAccountId = () => {

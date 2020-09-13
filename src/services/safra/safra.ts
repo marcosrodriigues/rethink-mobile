@@ -33,7 +33,7 @@ const balance = async (accountId: string) : Promise<SafraBalance> => {
 const createAccount = async (params = { Name: '', Email: '', Phone: '' }) => {
     const data = params;
     try {
-        await apiSafra.post(`/accounts/v1/optin`, data, {
+        apiSafra.post(`/accounts/v1/optin`, data, {
             headers: {
                 ContentType: "application/json"
             }

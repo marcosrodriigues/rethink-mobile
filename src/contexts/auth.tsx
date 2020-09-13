@@ -7,7 +7,7 @@ import api from '../services/api';
 interface AuthContextData {
     signed: boolean;
     user: User | null;
-    signIn(ag: string, cc: string, pass: string): Promise<void>;
+    signIn(): Promise<void>;
     signOut(): Promise<void>;
     signInWithSafra(): Promise<void>;
 }
@@ -18,28 +18,22 @@ export const AuthProvider : React.FC = ({ children }) => {
 
     useEffect(() => {
         (async function () {
-            const storageUser = await AsyncStorage.getItem("@ReThinkAuth:user");
-            const storageToken = await AsyncStorage.getItem("@ReThinkAuth:token");
+            const storageUser = await AsyncStorage.getItem("@SafiraAuth:user");
     
-            if (storageUser && storageToken) {
-                api.defaults.headers.Authorization = `Bearer ${storageToken}`;
+            if (storageUser) {
                 setUser(JSON.parse(storageUser))
             }
         })()
     }, [])
 
-    async function signIn(ag: string, cc: string, pass: string) {
-        const { data } = await auth.signIn(ag, cc, pass);
-        const { token, user } = data;
-        api.defaults.headers['Authorization'] = `Bearer ${token}`;
-        await AsyncStorage.setItem("@ReThinkAuth:user", JSON.stringify(user));
-        await AsyncStorage.setItem("@ReThinkAuth:token", token);
-        //setUser(user);
+    async function signIn() {
+        await auth.signIn();
     }
 
     async function signInWithSafra() {
+        await signIn();
         const { user } = await auth.signInWithSafra();
-        await AsyncStorage.setItem("@VenatuAuth:user", JSON.stringify(user));
+        await AsyncStorage.setItem("@SafiraAuth:user", JSON.stringify(user));
         setUser(user);
     }
 
@@ -54,7 +48,7 @@ export const AuthProvider : React.FC = ({ children }) => {
     }
 
     return (
-        <AuthContext.Provider value={{ signed: !!user, user: user, signIn, signOut, signInWithSafra }} >
+        <AuthContext.Provider value={{ signed: !!user, user: user, signOut, signIn, signInWithSafra }} >
             {children}
         </AuthContext.Provider>
     )
