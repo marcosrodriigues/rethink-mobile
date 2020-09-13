@@ -1,19 +1,15 @@
 import React, { createContext, useState, useEffect, useContext } from 'react'
 import * as auth from '../services/auth/auth';
-import api from '../services/safra';
 import { AsyncStorage } from 'react-native';
-
-interface User {
-    id: string
-    name: string
-}
+import User from '../interface/User';
+import api from '../services/api';
 
 interface AuthContextData {
     signed: boolean;
     user: User | null;
-    signIn(email: string, password: string): Promise<void>;
+    signIn(ag: string, cc: string, pass: string): Promise<void>;
     signOut(): Promise<void>;
-    signInWithSafra(user: object): Promise<void>;
+    signInWithSafra(): Promise<void>;
 }
 const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 
@@ -32,21 +28,18 @@ export const AuthProvider : React.FC = ({ children }) => {
         })()
     }, [])
 
-    async function signIn(email: string, password: string) {
-        const { data } = await auth.signIn(email, password);
+    async function signIn(ag: string, cc: string, pass: string) {
+        const { data } = await auth.signIn(ag, cc, pass);
         const { token, user } = data;
         api.defaults.headers['Authorization'] = `Bearer ${token}`;
         await AsyncStorage.setItem("@ReThinkAuth:user", JSON.stringify(user));
         await AsyncStorage.setItem("@ReThinkAuth:token", token);
-        setUser(user);
+        //setUser(user);
     }
 
-    async function signInWithSafra(safraUser: any) {
-        const { data } = await auth.signInWithSafra(safraUser);
-        const { token, user } = data;
-        api.defaults.headers['Authorization'] = `Bearer ${token}`;
+    async function signInWithSafra() {
+        const { user } = await auth.signInWithSafra();
         await AsyncStorage.setItem("@VenatuAuth:user", JSON.stringify(user));
-        await AsyncStorage.setItem("@VenatuAuth:token", token);
         setUser(user);
     }
 

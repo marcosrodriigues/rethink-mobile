@@ -12,7 +12,8 @@ import { useNavigation } from '@react-navigation/native';
 import { useAuth } from '../../contexts/auth';
 
 const Login: React.FC = () => {
-    const [email, setEmail] = useState('');
+    const [agency, setAgency] = useState('');
+    const [account, setAccount] = useState('');
     const [password, setPassword] = useState('');
     const { signIn, signInWithSafra } = useAuth();
 
@@ -20,7 +21,7 @@ const Login: React.FC = () => {
 
     const handleEnterButton = async () => {
         try {
-            await signIn(email, password);
+            await signIn(agency, account, password);
         } catch (err) {
             Alert.alert("Hey", "Verifique suas credenciais.")
         }
@@ -28,14 +29,14 @@ const Login: React.FC = () => {
 
     const handleContinueWithSafra = async () => {
         try {
-            await signInWithSafra({ email, password });
+            await signInWithSafra();
         } catch (err) {
             Alert.alert("Hey", "Tente novamente.")
         }
     }
 
-    const handleForgotPassword = () => {
-        navigation.navigate('Forgot')
+    const handleClickCreateAccount = () => {
+        navigation.navigate('CreateAccount')
     }
 
     return (
@@ -44,15 +45,17 @@ const Login: React.FC = () => {
                 <Logo source={logo} />
             </LogoContainer>
             <Form>
-                <RTInput placeholder="Digite seu e-mail" value={email} onChangeText={setEmail} />
-                <RTInput placeholder="Digite sua senha" value={password} onChangeText={setPassword} secureTextEntry />
+                {/* <RTInput placeholder="Agência" value={agency} onChangeText={setAgency} />
+                <RTInput placeholder="Conta" value={account} onChangeText={setAccount} />
+                <RTInput placeholder="Senha eletrônica" value={password} onChangeText={setPassword} secureTextEntry /> */}
 
                 <ButtonContainer>
-                    <RTButton onPress={handleEnterButton}><TextInButton>Entrar</TextInButton></RTButton>
-                    <RTButton bgColor={colorWhite} onPress={handleContinueWithSafra}><TextInButton color={backgroundMeBallon}>Continuar com o Safra</TextInButton></RTButton>
+                    {/* <RTButton onPress={handleEnterButton}><TextInButton>Entrar</TextInButton></RTButton> */}
+                    <RTButton onPress={handleContinueWithSafra}><TextInButton>Continuar com o Safra</TextInButton></RTButton>
                 </ButtonContainer>
 
-                <Link onPress={handleForgotPassword}>Forgot password?</Link>
+                {/* <Link onPress={handleForgotPassword}>Esqueci minha senha</Link> */}
+                <Link onPress={handleClickCreateAccount}>Ainda não possuo conta</Link>
             </Form>
         </Container>
     )

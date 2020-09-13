@@ -1,9 +1,12 @@
 import axios from 'axios';
 
-const baseURL = process.env.REACT_NATIVE_APP_SAFRA_API_URL || '';
+const apiBaseURL = process.env.REACT_NATIVE_APP_SAFRA_API_URL || '';
+const loginBaseUrl = process.env.REACT_NATIVE_APP_SAFRA_LOGIN_URL || '';
 
-const api = axios.create({
-    baseURL
+export const apiSafra = axios.create({
+    baseURL: apiBaseURL
 })
 
-export default api;
+export const apiLoginSafra = axios.create({
+    baseURL: loginBaseUrl
+})
