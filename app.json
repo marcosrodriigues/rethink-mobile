@@ -22,6 +22,10 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "android": {
+        "package": "safra.trainee.hackaton.rethink",
+        "versionCode": 1
     }
   }
 }
