@@ -1,8 +1,8 @@
 export default interface Objective {
-    id: number,
-    title: string
+    id?: number,
+    title?: string
     goal: number,
     missing: number,
-    lastHistory: number,
+    lastHistory?: number,
     objectives?: [Objective],
 }

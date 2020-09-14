@@ -21,7 +21,7 @@ export const AuthProvider : React.FC = ({ children }) => {
             const storageUser = await AsyncStorage.getItem("@SafiraAuth:user");
     
             if (storageUser) {
-                setUser(JSON.parse(storageUser))
+                await AsyncStorage.clear();
             }
         })()
     }, [])

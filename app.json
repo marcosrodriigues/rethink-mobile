@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "rethink",
-    "slug": "rethink",
+    "name": "Safira",
+    "slug": "safira",
     "version": "1.0.0",
     "sdkVersion": "38.0.0",
     "orientation": "portrait",
@@ -24,8 +24,9 @@
       "favicon": "./assets/favicon.png"
     },
     "android": {
-        "package": "safra.trainee.hackaton.rethink",
-        "versionCode": 1
-    }
+      "package": "safra.trainee.hackaton.safira",
+      "versionCode": 1
+    },
+    "description": ""
   }
 }
