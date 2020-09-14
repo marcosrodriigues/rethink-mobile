@@ -59,8 +59,7 @@ const InvestmentDetail: React.FC = ({
 
     const handleClickInvest = async () => {
         try {
-            //await service.createInvestment(formData);
-
+            
             const savedObjective = subObjective?.id ? {
                 ...subObjective,
                 missing: subObjective?.goal - formData.amount
@@ -68,12 +67,14 @@ const InvestmentDetail: React.FC = ({
                 ...objective,
                 missing: objective.goal - formData.amount
             }
-
-            Alert.alert("Parabéns!", "Você acaba de investir " + convertNumberToCurrency(formData.amount) + " no investimento " + investment.title)
+            
             const createdInvestment = {
                 ...formData,
                 objective: savedObjective
             }
+            
+            //await service.createInvestment(formData);
+            Alert.alert("Parabéns!", "Você acaba de investir " + convertNumberToCurrency(formData.amount) + " no investimento " + investment.title)
             navigation.navigate('Dashboard', {
                 createdInvestment
             });
